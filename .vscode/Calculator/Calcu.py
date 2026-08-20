@@ -168,7 +168,7 @@ def apply_mode():
         window.geometry("340x480")
 
 
-top_bar = ctk.CTkFrame(window, fg_color="#1F22E4C5")
+top_bar = ctk.CTkFrame(window, fg_color="#0cf1f1")
 top_bar.pack(fill="x", padx=10, pady=(10, 0))
 
 ctk.CTkRadioButton(top_bar, text="Standard", variable=mode_var, value=0,
