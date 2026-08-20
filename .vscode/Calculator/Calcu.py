@@ -1,9 +1,4 @@
-"""
-Calculator (CustomTkinter)
-
-Flat script, top to bottom, no classes -- optimized for being easy to
-read and edit.
-"""
+#One edge case multiple dots, another is arrow notation is allwowed math error can easily fix this,i should also maybe confine the amount of digits u can input, any thing can be typed but it returns an error if nto allowed
 
 import re
 import math
@@ -63,6 +58,7 @@ FUNCTIONS = {
     "log": math.log10,
     "exp": math.exp,
     "factorial": lambda x: math.factorial(int(x)),
+    "cbrt": math.cbrt,
 }
 CONSTANTS = {"pi": math.pi, "e": math.e}
 OPS = {
@@ -92,7 +88,7 @@ def eval_node(node):
     raise ValueError("not a valid expression")
 
 
-window = ctk.CTk()
+window = ctk.CTk()# Define screen size
 window.title("Calculator")
 window.configure(fg_color="#5FC0E0")
 window.geometry("340x480")
@@ -102,7 +98,7 @@ entry_var = ctk.StringVar(value="0")
 shift_active = False
 mode_var = ctk.IntVar(value=0)  # 0 = Standard, 1 = Scientific
 
-
+#To be able to see what you type on screen
 def append(text):
     current = entry_var.get()
     if current in ("0", "Error"):
@@ -137,7 +133,7 @@ def evaluate():
         result = int(result)
     entry_var.set(str(result))
 
-
+#when shift is active make it so that the buttons have reverse functions
 def toggle_shift():
     global shift_active
     shift_active = not shift_active
@@ -145,6 +141,7 @@ def toggle_shift():
     sin_btn.configure(text="asin" if shift_active else "sin")
     cos_btn.configure(text="acos" if shift_active else "cos")
     tan_btn.configure(text="atan" if shift_active else "tan")
+    sqrt_btn.configure(text="³√ " if shift_active else "√")
 
 
 def press_sin():# sin and sin-1 function to text box
@@ -157,9 +154,11 @@ def press_cos(): # cos and cos-1 function to text box
 
 def press_tan(): # taN and tan-1 function to text box
     append("atan(" if shift_active else "tan(")
+def press_sqrt():
+    append("cbrt(" if shift_active else "sqrt(")
 
 
-def apply_mode():
+def apply_mode(): #Switching the window size for different modes so as not to overflow.
     if mode_var.get() == 1:
         scientific_frame.pack(fill="both", expand=True, padx=10, before=standard_frame)
         window.geometry("340x620")
@@ -167,7 +166,7 @@ def apply_mode():
         scientific_frame.pack_forget()
         window.geometry("340x480")
 
-
+# USed PYUIBUILDER FOR THIS PART
 top_bar = ctk.CTkFrame(window, fg_color="#0cf1f1")
 top_bar.pack(fill="x", padx=10, pady=(10, 0))
 
@@ -175,14 +174,11 @@ ctk.CTkRadioButton(top_bar, text="Standard", variable=mode_var, value=0,
                     command=apply_mode).pack(side="left", expand=True, padx=5, pady=8)
 ctk.CTkRadioButton(top_bar, text="Scientific", variable=mode_var, value=1,
                     command=apply_mode).pack(side="left", expand=True, padx=5, pady=8)
-
-# ---- display ------------------------------------------------------------
 display = ctk.CTkEntry(window, textvariable=entry_var, font=ctk.CTkFont(size=26),
                         justify="right", height=56)
 display.pack(fill="x", padx=10, pady=10)
 
 
-# ---- button helper --------------------------------------------------------
 def btn(parent, text, command, row, col, colspan=1, light=False):
     b = ctk.CTkButton(parent, text=text, command=command, corner_radius=5,
                        fg_color="#ececec" if light else "#e4dfdf",
@@ -191,7 +187,7 @@ def btn(parent, text, command, row, col, colspan=1, light=False):
     return b
 
 
-#this is for standard as in simple calc it draws the screen again so if scientific it resets.
+#this is for standard as in simple calc it draws the screen again so if scientific it resets. it also drawws in all the numbers so i dont hv to waste lines by inputing them one by one
 standard_frame = ctk.CTkFrame(window, fg_color="#5FC0E0")
 standard_frame.pack(fill="both", expand=True, padx=10, pady=(0, 10))
 for i in range(4):
@@ -228,7 +224,7 @@ btn(standard_frame, "⌫", backspace, 5, 0)
 btn(standard_frame, "Mod", lambda: append("%"), 5, 1)
 btn(standard_frame, "=", evaluate, 5, 2, colspan=2)
 
-# ---- scientific pad (hidden until Scientific mode is picked) --------------
+# for a 4 by 3 u1 style. and scrientific buttons
 scientific_frame = ctk.CTkFrame(window, fg_color="#5FC0E0")
 for i in range(4):
     scientific_frame.grid_columnconfigure(i, weight=1)
@@ -240,20 +236,20 @@ sin_btn = btn(scientific_frame, "sin", press_sin, 0, 1)
 cos_btn = btn(scientific_frame, "cos", press_cos, 0, 2)
 tan_btn = btn(scientific_frame, "tan", press_tan, 0, 3)
 
+
 btn(scientific_frame, "x²", lambda: append("**2"), 1, 0)
 btn(scientific_frame, "xʸ", lambda: append("**"), 1, 1)
 btn(scientific_frame, "10ˣ", lambda: append("10**("), 1, 2)
-btn(scientific_frame, "√", lambda: append("sqrt("), 1, 3)
+sqrt_btn = btn(scientific_frame, "√", press_sqrt, 1, 3)
 
 btn(scientific_frame, "log", lambda: append("log("), 2, 0)
 btn(scientific_frame, "n!", lambda: append("!"), 2, 1)
 btn(scientific_frame, "EXP", lambda: append("exp("), 2, 2)
 btn(scientific_frame, "π", lambda: append("pi"), 2, 3)
 
-# ---- keyboard shortcuts ---------------------------------------------------
 window.bind("<Return>", lambda e: evaluate())
 window.bind("<KP_Enter>", lambda e: evaluate())
 window.bind("<Escape>", lambda e: clear())
 
-apply_mode()
-window.mainloop()
+apply_mode()# draws screen
+window.mainloop() # updates screen
