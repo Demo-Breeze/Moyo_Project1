@@ -40,10 +40,11 @@ playlist = [
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Outbreaker.mp3",  # BY Hinkik
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Duality.mp3",  # BY Dimrain47
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Menace.mp3",  # BY TheRealMannyHeffley
+    r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/The_Beginning_Of_Time",# BY Dj-Nate
 ]
-
+music = BackgroundMusicPlayer(playlist,0.4)
 #Using eval make it so that if i typed in something other than numbers like a command to get in my system, it would work therefore i have to use normal func rather than using eval. 1st Edge case.
-music = BackgroundMusicPlayer(playlist, volume=0.4)    
+
 
 FUNCTIONS = {
     "sin": lambda x: math.sin(math.radians(x)), #Lambda is an anonymous func, prevents from running immediately. Dict is used so as to beal to call the key later e.g sin or log. Math module is used here we convert the degrees to turn them into radians cuz that is what the math module uses rather than degrees. Same for the rest
@@ -248,6 +249,6 @@ btn(scientific_frame, "π", lambda: append("pi"), 2, 3)
 window.bind("<Return>", lambda e: evaluate())
 window.bind("<KP_Enter>", lambda e: evaluate())
 window.bind("<Escape>", lambda e: clear())
-
+ 
 apply_mode()# draws screen
 window.mainloop() # updates screen

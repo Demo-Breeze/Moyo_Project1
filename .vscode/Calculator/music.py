@@ -17,7 +17,8 @@ class BackgroundMusicPlayer:
         
         # Build and start background thread
         self.thread = threading.Thread(target=self._play_music_forever, daemon=True)
-        
+        self.thread.start()
+
 
     def _play_music_forever(self):
         """Internal background loop running on a separate thread."""
@@ -26,7 +27,6 @@ class BackgroundMusicPlayer:
             for song in self.playlist:
                 if not self.is_running:
                     break
-                self.thread.start()
                 pygame.mixer.music.load(song)
                 pygame.mixer.music.play()
                 
