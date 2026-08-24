@@ -4,7 +4,6 @@ import re
 import math
 import ast
 import operator
-
 import customtkinter as ctk
 import pygame
 from music import BackgroundMusicPlayer
@@ -43,9 +42,8 @@ playlist = [
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Menace.mp3",  # BY TheRealMannyHeffley
 ]
 
-music = BackgroundMusicPlayer(playlist, volume=0.4)
 #Using eval make it so that if i typed in something other than numbers like a command to get in my system, it would work therefore i have to use normal func rather than using eval. 1st Edge case.
-
+music = BackgroundMusicPlayer(playlist, volume=0.4)    
 
 FUNCTIONS = {
     "sin": lambda x: math.sin(math.radians(x)), #Lambda is an anonymous func, prevents from running immediately. Dict is used so as to beal to call the key later e.g sin or log. Math module is used here we convert the degrees to turn them into radians cuz that is what the math module uses rather than degrees. Same for the rest

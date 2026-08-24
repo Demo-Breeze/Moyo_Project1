@@ -30,7 +30,7 @@ playlist = [
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Monody.mp3", # BY TheFatRat
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Time_Leaper.mp3", # BY Hinkik
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Isolation2.mp3", # BY Nighthawk22
-    r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Sine_Wavs.mp3", # BY NK/RUkkus
+    r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Sine_Wavs.mp3", # BY NK/RUkkus 
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Shiawase.mp3", # BY Dion Timmer
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Explorers.mp3", # BY Hinkik
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Thermodynamix.mp3", # BY Dj-Nate
