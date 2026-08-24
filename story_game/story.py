@@ -5,10 +5,6 @@ from pathlib import Path
 from Character import Character
 from second_challenge import Roshambo
 from music import BackgroundMusicPlayer
-from Giant import Giant
-from Human import Human
-from Lunarian import Lunarian
-from Target import Target
 from first_challenge import first_challenge
 from third_challenge import hacker
 
