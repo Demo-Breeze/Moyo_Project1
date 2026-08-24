@@ -6,6 +6,7 @@ import ast
 import operator
 import customtkinter as ctk
 import pygame
+from PIL import Image, ImageTk
 from music import BackgroundMusicPlayer
 
 pygame.mixer.init()
@@ -40,7 +41,7 @@ playlist = [
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Outbreaker.mp3",  # BY Hinkik
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Duality.mp3",  # BY Dimrain47
     r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/Menace.mp3",  # BY TheRealMannyHeffley
-    r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/The_Beginning_Of_Time",# BY Dj-Nate
+    r"/home/sparky/Desktop/Moyo_Project1/Music/Mp3/The_Beginning_Of_Time.mp3", #BY Dj-Nate
 ]
 music = BackgroundMusicPlayer(playlist,0.4)
 #Using eval make it so that if i typed in something other than numbers like a command to get in my system, it would work therefore i have to use normal func rather than using eval. 1st Edge case.
@@ -91,7 +92,10 @@ window = ctk.CTk()# Define screen size
 window.title("Calculator")
 window.configure(fg_color="#5FC0E0")
 window.geometry("340x480")
-window.resizable(False, False)
+window.resizable(False,False)
+Icon = Image.open(r"/home/sparky/Desktop/Moyo_Project1/Graphics/geometry_dash.png")
+photo_icon = ImageTk.PhotoImage(Icon)
+window.iconphoto(True, photo_icon)
 
 entry_var = ctk.StringVar(value="0")
 shift_active = False
@@ -169,8 +173,7 @@ def apply_mode(): #Switching the window size for different modes so as not to ov
 top_bar = ctk.CTkFrame(window, fg_color="#0cf1f1")
 top_bar.pack(fill="x", padx=10, pady=(10, 0))
 
-ctk.CTkRadioButton(top_bar, text="Standard", variable=mode_var, value=0,
-                    command=apply_mode).pack(side="left", expand=True, padx=5, pady=8)
+ctk.CTkRadioButton(top_bar, text="Standard", variable=mode_var, value=0, command=apply_mode).pack(side="left", expand=True, padx=5, pady=8)
 ctk.CTkRadioButton(top_bar, text="Scientific", variable=mode_var, value=1,
                     command=apply_mode).pack(side="left", expand=True, padx=5, pady=8)
 display = ctk.CTkEntry(window, textvariable=entry_var, font=ctk.CTkFont(size=26),
