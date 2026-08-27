@@ -93,9 +93,9 @@ window.title("Calculator")
 window.configure(fg_color="#5FC0E0")
 window.geometry("340x480")
 window.resizable(False,False)
-Icon = Image.open(r"/home/sparky/Desktop/Moyo_Project1/Graphics/geometry_dash.png")
+"""Icon = Image.open(r"/home/sparky/Desktop/Moyo_Project1/Graphics/geometry_dash.png")
 photo_icon = ImageTk.PhotoImage(Icon)
-window.iconphoto(True, photo_icon)
+window.iconphoto(True, photo_icon)"""
 
 entry_var = ctk.StringVar(value="0")
 shift_active = False
