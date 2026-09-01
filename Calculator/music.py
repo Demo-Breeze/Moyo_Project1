@@ -28,6 +28,7 @@ class BackgroundMusicPlayer:
                 if not self.is_running:
                     break
                 pygame.mixer.music.load(song)
+                print(song)
                 pygame.mixer.music.play()
                 
                 # Catch pauses that happened during track transitions
