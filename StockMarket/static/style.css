@@ -1,0 +1,272 @@
+ /* ==========================================================================
+   Stock Watchlist — styles.css
+   Design concept: a printed exchange ledger rendered on a trading-floor
+   board. Warm paper-toned type sits on dark ink; the only colour used for
+   emphasis is functional (gain/loss), and numeric columns are set in
+   monospace so figures line up the way they would on a real tape.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+    --ink: #12181b;
+    --ink-raised: #171f23;
+    --rule: #2f3a41;
+    --paper: #ece7db;
+    --paper-dim: #9aa4a9;
+    --amber: #c89b3c;
+    --gain: #5b9279;
+    --loss: #b85c50;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-data: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 3rem 1.5rem 5rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* ---- Header ------------------------------------------------------------ */
+
+h1, .page-title {
+    max-width: 900px;
+    margin: 0 auto 0.35rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 2.1rem;
+    letter-spacing: 0.01em;
+    color: var(--paper);
+}
+
+body::before {
+    content: "Stock Watchlist";
+    display: block;
+    max-width: 900px;
+    margin: 0 auto 0.35rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 2.1rem;
+    color: var(--paper);
+}
+
+/* If the template gains a real <h1>, hide the generated one to avoid a
+   duplicate title — remove this rule once the markup has its own heading. */
+body:has(h1)::before {
+    content: none;
+}
+
+hr, .rule {
+    max-width: 900px;
+    margin: 0 auto 1.75rem;
+    border: none;
+    border-top: 1px solid var(--amber);
+    opacity: 0.6;
+}
+
+/* ---- Flash messages ------------------------------------------------------ */
+
+.flash {
+    max-width: 900px;
+    margin: 0 auto 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border-left: 3px solid var(--amber);
+    background: var(--ink-raised);
+    color: var(--paper);
+    font-size: 0.9rem;
+}
+
+.flash.error, .flash.danger {
+    border-left-color: var(--loss);
+}
+
+.flash.success {
+    border-left-color: var(--gain);
+}
+
+/* ---- Entry bar ----------------------------------------------------------- */
+
+form {
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+form label {
+    font-size: 0.85rem;
+    color: var(--paper-dim);
+    white-space: nowrap;
+}
+
+form input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    color: var(--paper);
+    font-family: var(--font-data);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.1rem;
+    text-transform: uppercase;
+}
+
+form input[type="text"]:focus {
+    outline: none;
+    border-bottom-color: var(--amber);
+}
+
+form input[type="text"]:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+}
+
+form input[type="submit"] {
+    background: none;
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+form input[type="submit"]:hover {
+    background: var(--amber);
+    color: var(--ink);
+}
+
+form input[type="submit"]:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+}
+
+/* ---- Table --------------------------------------------------------------- */
+
+table {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+thead th {
+    text-align: right;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.75rem;
+    color: var(--paper-dim);
+    padding: 0 0.6rem 0.6rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+thead th:first-child {
+    text-align: left;
+}
+
+tbody td {
+    text-align: right;
+    font-family: var(--font-data);
+    font-size: 0.95rem;
+    padding: 0.55rem 0.6rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+tbody td:first-child {
+    text-align: left;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--paper);
+}
+
+tbody tr:hover td {
+    background: var(--ink-raised);
+}
+
+.positive {
+    color: var(--gain);
+}
+
+.positive::before {
+    content: "▲ ";
+    font-size: 0.75em;
+}
+
+.negative {
+    color: var(--loss);
+}
+
+.negative::before {
+    content: "▼ ";
+    font-size: 0.75em;
+}
+
+td a {
+    color: var(--paper-dim);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    border-bottom: 1px solid transparent;
+}
+
+td a:hover {
+    color: var(--loss);
+    border-bottom-color: var(--loss);
+}
+
+td a:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+}
+
+/* ---- Empty state ---------------------------------------------------------- */
+
+p {
+    max-width: 900px;
+    margin: 2rem auto 0;
+    color: var(--paper-dim);
+    font-size: 0.95rem;
+}
+
+/* ---- Motion & accessibility ------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 2rem 1rem 3rem;
+    }
+
+    h1, .page-title, body::before {
+        font-size: 1.6rem;
+    }
+
+    form {
+        flex-wrap: wrap;
+    }
+}
