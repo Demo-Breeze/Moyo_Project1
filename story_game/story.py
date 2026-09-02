@@ -2,11 +2,10 @@ import time
 import sys
 import pygame
 from pathlib import Path
-from Character import Character
 from second_challenge import Roshambo
 from music import BackgroundMusicPlayer
-from first_challenge import first_challenge
-from third_challenge import hacker
+from  first_challenge import first_challenge
+from  third_challenge import hacker
 
 #importing all the necessary modules and classes for the game. This includes time for delays, sys for system exit, random for random choices and, pygame for music pla
 

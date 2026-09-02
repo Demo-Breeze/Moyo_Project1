@@ -11,6 +11,7 @@ class BackgroundMusicPlayer:
         self.is_running = True
         self.currentsong = "No Song Playing"
         
+        
         # Ensure mixer is initialized
         if not pygame.mixer.get_init():
             raise RuntimeError("pygame.mixer must be initialized in the main thread before starting the music player.")

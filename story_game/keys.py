@@ -1,5 +1,5 @@
 import pygame
-from music import BackgroundMusicPlayer
+from story_game.music import BackgroundMusicPlayer
 pygame.init()
 class Keys:
     def __init__(self):
