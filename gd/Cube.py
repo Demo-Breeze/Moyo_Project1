@@ -21,7 +21,7 @@ class CubeManager:
                 
 
     def get_rotated_surface_and_rect(self, base_x, base_y):
-        # We rotate negative current_angle to spin clockwise
+        # rotate negative current_angle to spin clockwise
         rotated_image = pygame.transform.rotate(self.original_image, -self.current_angle)
         # Snap the center of the expanded bounding box to the cube's resting spot
         default_rect = self.original_image.get_rect(topleft=(base_x, base_y))
