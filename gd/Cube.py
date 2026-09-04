@@ -12,6 +12,11 @@ class CubeManager:
         if self.current_angle == self.target_angle:
             self.target_angle += 180.0
 
+    def reset(self):
+        # Snap back to a fresh, un-rotated cube (used when restarting after a win/lose)
+        self.current_angle = 0.0
+        self.target_angle = 0.0
+
     def update(self, dt):
         if self.current_angle < self.target_angle:
             # Negative because Geometry Dash cubes rotate clockwise
